@@ -1,0 +1,29 @@
+{
+    "name": "pyrech/cron-bundle",
+    "type": "symfony-bundle",
+    "description": "A bundle allowing to easily work with cron",
+    "keywords": ["cron", "crontab", "scheduler"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Loick Piera"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.2",
+        "symfony/validator": "~2.3"
+    },
+    "require-dev": {
+        "symfony/console": "~2.3",
+        "symfony/process": "~2.3"
+    },
+    "suggest": {
+        "symfony/console": "For easily converting Command into Task",
+        "symfony/process": "For finding PHP bin dir"
+    },
+    "autoload": {
+        "psr-4": { "Pyrech\\CronBundle\\": "" }
+    },
+    "minimum-stability": "dev"
+}

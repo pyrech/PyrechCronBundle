@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+                                        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Pyrech\CronBundle\Model\Task">
+        <property name="minute">
+            <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
+                <option name="minimum">0</option>
+                <option name="maximum">59</option>
+            </constraint>
+        </property>
+        <property name="hour">
+            <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
+                <option name="minimum">0</option>
+                <option name="maximum">23</option>
+            </constraint>
+        </property>
+        <property name="day">
+            <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
+                <option name="minimum">1</option>
+                <option name="maximum">31</option>
+            </constraint>
+        </property>
+        <property name="month">
+            <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
+                <option name="minimum">1</option>
+                <option name="maximum">12</option>
+            </constraint>
+        </property>
+        <property name="dayOfTheWeek">
+            <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
+                <option name="minimum">0</option>
+                <option name="maximum">6</option>
+            </constraint>
+        </property>
+        <property name="job">
+            <constraint name="NotBlank" />
+        </property>
+    </class>
+
+</constraint-mapping>

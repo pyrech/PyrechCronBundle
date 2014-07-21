@@ -1,0 +1,10 @@
+# Composer
+composer.phar
+vendor/*
+
+# IDE
+.idea*
+
+# Tests
+Tests/Fixtures/app/cache
+Tests/Fixtures/app/logs
