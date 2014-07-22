@@ -98,4 +98,69 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->markTestSkipped('TODO');
     }
+
+    public function testSetHourly()
+    {
+        $this->taskBuilder->setHourly(30);
+
+        $task = $this->taskBuilder->getTask();
+
+        $this->assertSame(30, $task->getMinute());
+        $this->assertNull($task->getHour());
+        $this->assertNull($task->getDay());
+        $this->assertNull($task->getMonth());
+        $this->assertNull($task->getDayOfTheWeek());
+    }
+
+    public function testSetDaily()
+    {
+        $this->taskBuilder->setDaily(12, 30);
+
+        $task = $this->taskBuilder->getTask();
+
+        $this->assertSame(30, $task->getMinute());
+        $this->assertSame(12, $task->getHour());
+        $this->assertNull($task->getDay());
+        $this->assertNull($task->getMonth());
+        $this->assertNull($task->getDayOfTheWeek());
+    }
+
+    public function testSetWeekly()
+    {
+        $this->taskBuilder->setWeekly(0, 3, 15);
+
+        $task = $this->taskBuilder->getTask();
+
+        $this->assertSame(15, $task->getMinute());
+        $this->assertSame(3, $task->getHour());
+        $this->assertNull($task->getDay());
+        $this->assertNull($task->getMonth());
+        $this->assertSame(0, $task->getDayOfTheWeek());
+    }
+
+    public function testSetMonthly()
+    {
+        $this->taskBuilder->setMonthly(15, 2, 55);
+
+        $task = $this->taskBuilder->getTask();
+
+        $this->assertSame(55, $task->getMinute());
+        $this->assertSame(2, $task->getHour());
+        $this->assertSame(15, $task->getDay());
+        $this->assertNull($task->getMonth());
+        $this->assertNull($task->getDayOfTheWeek());
+    }
+
+    public function testSetYearly()
+    {
+        $this->taskBuilder->setYearly(12, 15, 4, 30);
+
+        $task = $this->taskBuilder->getTask();
+
+        $this->assertSame(30, $task->getMinute());
+        $this->assertSame(4, $task->getHour());
+        $this->assertSame(15, $task->getDay());
+        $this->assertSame(12, $task->getMonth());
+        $this->assertNull($task->getDayOfTheWeek());
+    }
 }

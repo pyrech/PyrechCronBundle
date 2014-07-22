@@ -221,4 +221,64 @@ class TaskBuilder implements TaskBuilderInterface
             sprintf('The console bootstrap was not found in the following path [%s]', implode(', ', $triedPaths))
         );
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setHourly($minute = 0)
+    {
+        $this->minute = $minute;
+        $this->hour = null;
+        $this->day = null;
+        $this->month = null;
+        $this->dayOfTheWeek = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDaily($hour = 0, $minute = 0)
+    {
+        $this->minute = $minute;
+        $this->hour = $hour;
+        $this->day = null;
+        $this->month = null;
+        $this->dayOfTheWeek = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setWeekly($dayOfTheWeek = 0, $hour = 0, $minute = 0)
+    {
+        $this->minute = $minute;
+        $this->hour = $hour;
+        $this->day = null;
+        $this->month = null;
+        $this->dayOfTheWeek = $dayOfTheWeek;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMonthly($day = 1, $hour = 0, $minute = 0)
+    {
+        $this->minute = $minute;
+        $this->hour = $hour;
+        $this->day = $day;
+        $this->month = null;
+        $this->dayOfTheWeek = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setYearly($month = 1, $day = 1, $hour = 0, $minute = 0)
+    {
+        $this->minute = $minute;
+        $this->hour = $hour;
+        $this->day = $day;
+        $this->month = $month;
+        $this->dayOfTheWeek = null;
+    }
 }

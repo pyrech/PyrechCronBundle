@@ -65,4 +65,37 @@ interface TaskBuilderInterface
      * @param bool $outputDiscarded
      */
     public function setOutputDiscarded($outputDiscarded=true);
+
+    /**
+     * @param int $minute
+     */
+    public function setHourly($minute=0);
+
+    /**
+     * @param int $hour
+     * @param int $minute
+     */
+    public function setDaily($hour=0, $minute=0);
+
+    /**
+     * @param int $dayOfTheWeek
+     * @param int $hour
+     * @param int $minute
+     */
+    public function setWeekly($dayOfTheWeek=0, $hour=0, $minute=0);
+
+    /**
+     * @param int $day
+     * @param int $hour
+     * @param int $minute
+     */
+    public function setMonthly($day=1, $hour=0, $minute=0);
+
+    /**
+     * @param int $month
+     * @param int $day
+     * @param int $hour
+     * @param int $minute
+     */
+    public function setYearly($month=1, $day=1, $hour=0, $minute=0);
 }
