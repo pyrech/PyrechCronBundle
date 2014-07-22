@@ -4,6 +4,8 @@ namespace Pyrech\CronBundle\Tests\Scheduling;
 
 use Pyrech\CronBundle\Scheduling\TaskBuilder;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
+use Pyrech\CronBundle\Tests\Fixtures\app\AppKernel;
+use Pyrech\CronBundle\Tests\Fixtures\CommandSchedulable;
 
 class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -98,7 +100,26 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testSetCommand()
     {
-        $this->markTestSkipped('TODO');
+        $kernel = new AppKernel('test', false);
+
+        $taskBuilder = new TaskBuilder(
+            '\Pyrech\CronBundle\Model\Task',
+            $kernel->getRootDir(),
+            array('console')
+        );
+
+        $command = new CommandSchedulable();
+        $command->configTask($taskBuilder);
+
+        $task = $taskBuilder->getTask();
+
+        $this->assertRegExp('#.*php.* .*console test:command#', $task->getJob());
+        $this->assertSame(15, $task->getMinute());
+        $this->assertNull($task->getHour());
+        $this->assertNull($task->getDay());
+        $this->assertNull($task->getMonth());
+        $this->assertNull($task->getDayOfTheWeek());
+        $this->assertSame(true, $task->hasOutputDiscarded());
     }
 
     public function testSetHourly()

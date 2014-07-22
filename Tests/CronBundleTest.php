@@ -2,7 +2,6 @@
 
 namespace Pyrech\CronBundle\Tests;
 
-
 class CronBundleTest extends CronBundleTestCase
 {
     public function testKernelBoots()

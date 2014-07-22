@@ -4,8 +4,8 @@
 
     <parameters>
         <parameter key="pyrech_cron.console.paths" type="collection">
-            <parameter>app/console</parameter>
-            <parameter>bin/console</parameter>
+            <parameter>console</parameter>
+            <parameter>../bin/console</parameter>
         </parameter>
 
         <parameter key="pyrech_cron.task.builder.class">Pyrech\Scheduling\TaskBuilder</parameter>
