@@ -73,6 +73,8 @@ class TaskBuilder implements TaskBuilderInterface
         }
 
         $this->taskClass = $taskClass;
+
+        return $this;
     }
 
     /**
@@ -103,6 +105,8 @@ class TaskBuilder implements TaskBuilderInterface
         $this->dayOfTheWeek = null;
         $this->job = '';
         $this->outputDiscarded = true;
+
+        return $this;
     }
 
     /**
@@ -111,6 +115,8 @@ class TaskBuilder implements TaskBuilderInterface
     public function setMinute($minute = null)
     {
         $this->minute = $minute;
+
+        return $this;
     }
 
     /**
@@ -119,6 +125,8 @@ class TaskBuilder implements TaskBuilderInterface
     public function setHour($hour = null)
     {
         $this->hour = $hour;
+
+        return $this;
     }
 
     /**
@@ -127,6 +135,8 @@ class TaskBuilder implements TaskBuilderInterface
     public function setDay($day = null)
     {
         $this->day = $day;
+
+        return $this;
     }
 
     /**
@@ -135,6 +145,8 @@ class TaskBuilder implements TaskBuilderInterface
     public function setMonth($month = null)
     {
         $this->month = $month;
+
+        return $this;
     }
 
     /**
@@ -143,6 +155,8 @@ class TaskBuilder implements TaskBuilderInterface
     public function setDayOfTheWeek($dayOfTheWeek = null)
     {
         $this->dayOfTheWeek = $dayOfTheWeek;
+
+        return $this;
     }
 
     /**
@@ -151,6 +165,8 @@ class TaskBuilder implements TaskBuilderInterface
     public function setJob($job)
     {
         $this->job = $job;
+
+        return $this;
     }
 
     /**
@@ -166,14 +182,18 @@ class TaskBuilder implements TaskBuilderInterface
         );
 
         $this->job = $job;
+
+        return $this;
     }
 
     /**
-     * @param bool $outputDiscarded
+     * {{@inheritdoc}
      */
     public function setOutputDiscarded($outputDiscarded = true)
     {
         $this->outputDiscarded = $outputDiscarded;
+
+        return $this;
     }
 
     /**
@@ -232,6 +252,8 @@ class TaskBuilder implements TaskBuilderInterface
         $this->day = null;
         $this->month = null;
         $this->dayOfTheWeek = null;
+
+        return $this;
     }
 
     /**
@@ -244,6 +266,8 @@ class TaskBuilder implements TaskBuilderInterface
         $this->day = null;
         $this->month = null;
         $this->dayOfTheWeek = null;
+
+        return $this;
     }
 
     /**
@@ -256,6 +280,8 @@ class TaskBuilder implements TaskBuilderInterface
         $this->day = null;
         $this->month = null;
         $this->dayOfTheWeek = $dayOfTheWeek;
+
+        return $this;
     }
 
     /**
@@ -268,6 +294,8 @@ class TaskBuilder implements TaskBuilderInterface
         $this->day = $day;
         $this->month = null;
         $this->dayOfTheWeek = null;
+
+        return $this;
     }
 
     /**
@@ -280,5 +308,7 @@ class TaskBuilder implements TaskBuilderInterface
         $this->day = $day;
         $this->month = $month;
         $this->dayOfTheWeek = null;
+
+        return $this;
     }
 }

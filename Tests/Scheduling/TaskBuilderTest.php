@@ -50,13 +50,14 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testGetTask()
     {
-        $this->taskBuilder->setJob('/usr/bin/php -v');
-        $this->taskBuilder->setMinute(1);
-        $this->taskBuilder->setHour(2);
-        $this->taskBuilder->setDay(3);
-        $this->taskBuilder->setMonth(4);
-        $this->taskBuilder->setDayOfTheWeek(5);
-        $this->taskBuilder->setOutputDiscarded(false);
+        $this->taskBuilder
+            ->setJob('/usr/bin/php -v')
+            ->setMinute(1)
+            ->setHour(2)
+            ->setDay(3)
+            ->setMonth(4)
+            ->setDayOfTheWeek(5)
+            ->setOutputDiscarded(false);
 
         $task = $this->taskBuilder->getTask();
 
@@ -73,13 +74,14 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testReset()
     {
-        $this->taskBuilder->setJob('/usr/bin/php -v');
-        $this->taskBuilder->setMinute(1);
-        $this->taskBuilder->setHour(2);
-        $this->taskBuilder->setDay(3);
-        $this->taskBuilder->setMonth(4);
-        $this->taskBuilder->setDayOfTheWeek(5);
-        $this->taskBuilder->setOutputDiscarded(false);
+        $this->taskBuilder
+            ->setJob('/usr/bin/php -v')
+            ->setMinute(1)
+            ->setHour(2)
+            ->setDay(3)
+            ->setMonth(4)
+            ->setDayOfTheWeek(5)
+            ->setOutputDiscarded(false);
 
         $this->taskBuilder->reset();
 
