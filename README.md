@@ -11,8 +11,10 @@ This bundle will allow you to:
 
 **Caution**: still under heavy development and not yet usable.
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/aa318e9e-cb57-449a-8c32-fd4cf54b47ef/big.png)](https://insight.sensiolabs.com/projects/aa318e9e-cb57-449a-8c32-fd4cf54b47ef)
 [![Travis CI](https://travis-ci.org/pyrech/PyrechCronBundle.png)](https://travis-ci.org/pyrech/PyrechCronBundle)
+[![Code Coverage](https://scrutinizer-ci.com/g/pyrech/PyrechCronBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pyrech/PyrechCronBundle/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pyrech/PyrechCronBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pyrech/PyrechCronBundle/?branch=master)
+https://insight.sensiolabs.com/projects/d4f7b263-4606-402a-be98-87ff23f70a87/small.png
 
 ## Getting started
 
