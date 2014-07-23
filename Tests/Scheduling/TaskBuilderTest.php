@@ -122,6 +122,69 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(true, $task->hasOutputDiscarded());
     }
 
+    public function testSetCommandWithRootDirOrConsolePath()
+    {
+        $kernel = new AppKernel('test', false);
+
+        try {
+            $taskBuilder = new TaskBuilder(
+                '\Pyrech\CronBundle\Model\Task',
+                '',
+                array('console')
+            );
+
+            $command = new CommandSchedulable();
+            $command->configTask($taskBuilder);
+            $this->fail();
+        } catch(\Exception $e) {
+            $this->assertSame(
+                'The rootDir and possibleConsolePaths should be set to find the console file',
+                $e->getMessage()
+            );
+        }
+
+        try {
+            $taskBuilder = new TaskBuilder(
+                '\Pyrech\CronBundle\Model\Task',
+                $kernel->getRootDir(),
+                array()
+            );
+
+            $command = new CommandSchedulable();
+            $command->configTask($taskBuilder);
+            $this->fail();
+        } catch(\Exception $e) {
+            $this->assertSame(
+                'The rootDir and possibleConsolePaths should be set to find the console file',
+                $e->getMessage()
+            );
+        }
+
+    }
+
+    public function testSetCommandWithNonExistentConsole()
+    {
+        $kernel = new AppKernel('test', false);
+
+        try {
+            $taskBuilder = new TaskBuilder(
+                '\Pyrech\CronBundle\Model\Task',
+                DIRECTORY_SEPARATOR.'myapp',
+                array('myconsole')
+            );
+
+            $command = new CommandSchedulable();
+            $command->configTask($taskBuilder);
+            $this->fail();
+        } catch(\Exception $e) {
+            $this->assertSame(
+                'The console bootstrap was not found in the following path ['.DIRECTORY_SEPARATOR.'myapp'.DIRECTORY_SEPARATOR.'myconsole]',
+                $e->getMessage()
+            );
+        }
+
+    }
+
     public function testSetHourly()
     {
         $this->taskBuilder->setHourly(30);
