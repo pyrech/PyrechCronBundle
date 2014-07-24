@@ -2,6 +2,7 @@
 
 namespace Pyrech\CronBundle\Scheduling;
 
+use Pyrech\CronBundle\Exception\BuilderException;
 use Pyrech\CronBundle\Model\Task;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Process\PhpExecutableFinder;
@@ -59,7 +60,7 @@ class TaskBuilder implements TaskBuilderInterface
     public function setTaskClass($taskClass)
     {
         if (empty($taskClass) || !class_exists($taskClass)) {
-            throw new \Exception(
+            throw new BuilderException(
                 sprintf('The class \'%s\' doesn\'t exist', $taskClass)
             );
         }
@@ -67,7 +68,7 @@ class TaskBuilder implements TaskBuilderInterface
         $interface = '\Pyrech\CronBundle\Model\TaskInterface';
         $reflection = new \ReflectionClass($taskClass);
         if (!$reflection->implementsInterface($interface)) {
-            throw new \Exception(
+            throw new BuilderException(
                 sprintf('The class \'%s\' should implement %s', $taskClass, $interface)
             );
         }
@@ -209,7 +210,7 @@ class TaskBuilder implements TaskBuilderInterface
          $phpBinPath = $phpExecutableFinder->find();
 
          if (! $phpBinPath) {
-             throw new \Exception('The PHP executable was not found');
+             throw new BuilderException('The PHP executable was not found');
          }
 
          return $phpBinPath;
@@ -226,7 +227,7 @@ class TaskBuilder implements TaskBuilderInterface
     private function findConsolePath()
     {
         if (empty($this->rootDir) || empty($this->possibleConsolePaths)) {
-            throw new \Exception('The rootDir and possibleConsolePaths should be set to find the console file');
+            throw new BuilderException('The rootDir and possibleConsolePaths should be set to find the console file');
         }
 
         $triedPaths = array();
@@ -237,7 +238,7 @@ class TaskBuilder implements TaskBuilderInterface
             }
             $triedPaths[] = $path;
         }
-        throw new \Exception(
+        throw new BuilderException(
             sprintf('The console bootstrap was not found in the following path [%s]', implode(', ', $triedPaths))
         );
     }

@@ -2,6 +2,7 @@
 
 namespace Pyrech\CronBundle\Tests\Scheduling;
 
+use Pyrech\CronBundle\Exception\BuilderException;
 use Pyrech\CronBundle\Scheduling\TaskBuilder;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
 use Pyrech\CronBundle\Tests\Fixtures\app\AppKernel;
@@ -22,7 +23,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         try {
             $this->taskBuilder->setTaskClass('');
             $this->fail();
-        } catch (\Exception $e) {
+        } catch (BuilderException $e) {
             $this->assertSame(
                 'The class \'\' doesn\'t exist',
                 $e->getMessage()
@@ -32,7 +33,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         try {
             $this->setTaskClass('\Pyrech\CronBundle\Tests\Fixtures\Task\TaskThatDoesntExist');
             $this->fail();
-        } catch (\Exception $e) {
+        } catch (BuilderException $e) {
             $this->assertSame(
                 'The class \'\Pyrech\CronBundle\Tests\Fixtures\Task\TaskThatDoesntExist\' doesn\'t exist',
                 $e->getMessage()
@@ -42,7 +43,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         try {
             $this->taskBuilder->setTaskClass('\Pyrech\CronBundle\Tests\Fixtures\Task\TaskNotImplementingInterface');
             $this->fail();
-        } catch (\Exception $e) {
+        } catch (BuilderException $e) {
             $this->assertSame(
                 'The class \'\Pyrech\CronBundle\Tests\Fixtures\Task\TaskNotImplementingInterface\' should implement \Pyrech\CronBundle\Model\TaskInterface',
                 $e->getMessage()
@@ -136,7 +137,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             $command = new CommandSchedulable();
             $command->configTask($taskBuilder);
             $this->fail();
-        } catch(\Exception $e) {
+        } catch(BuilderException $e) {
             $this->assertSame(
                 'The rootDir and possibleConsolePaths should be set to find the console file',
                 $e->getMessage()
@@ -153,7 +154,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             $command = new CommandSchedulable();
             $command->configTask($taskBuilder);
             $this->fail();
-        } catch(\Exception $e) {
+        } catch(BuilderException $e) {
             $this->assertSame(
                 'The rootDir and possibleConsolePaths should be set to find the console file',
                 $e->getMessage()
@@ -164,8 +165,6 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testSetCommandWithNonExistentConsole()
     {
-        $kernel = new AppKernel('test', false);
-
         try {
             $taskBuilder = new TaskBuilder(
                 '\Pyrech\CronBundle\Model\Task',
@@ -176,7 +175,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             $command = new CommandSchedulable();
             $command->configTask($taskBuilder);
             $this->fail();
-        } catch(\Exception $e) {
+        } catch(BuilderException $e) {
             $this->assertSame(
                 'The console bootstrap was not found in the following path ['.DIRECTORY_SEPARATOR.'myapp'.DIRECTORY_SEPARATOR.'myconsole]',
                 $e->getMessage()
