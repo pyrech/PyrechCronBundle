@@ -31,7 +31,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         }
 
         try {
-            $this->setTaskClass('\Pyrech\CronBundle\Tests\Fixtures\Task\TaskThatDoesntExist');
+            $this->taskBuilder->setTaskClass('\Pyrech\CronBundle\Tests\Fixtures\Task\TaskThatDoesntExist');
             $this->fail();
         } catch (BuilderException $e) {
             $this->assertSame(
