@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
@@ -8,9 +10,9 @@
             <parameter>../bin/console</parameter>
         </parameter>
 
-        <parameter key="pyrech_cron.task.builder.class">Pyrech\Scheduling\TaskBuilder</parameter>
-        <parameter key="pyrech_cron.formatter.crontab.class">Pyrech\Formatter\CrontabFormatter</parameter>
-        <parameter key="pyrech_cron.scheduler.class">Pyrech\Scheduling\Scheduler</parameter>
+        <parameter key="pyrech_cron.task.builder.class">Pyrech\CronBundle\Scheduling\TaskBuilder</parameter>
+        <parameter key="pyrech_cron.formatter.crontab.class">Pyrech\CronBundle\Formatter\CrontabFormatter</parameter>
+        <parameter key="pyrech_cron.scheduler.class">Pyrech\CronBundle\Scheduling\Scheduler</parameter>
     </parameters>
 
     <services>
@@ -20,10 +22,10 @@
             <argument>%pyrech_cron.console.paths%</argument>
         </service>
 
-        <service id="pyrech_cron.formatter.default" class="%pyrech_cron.formatter.crontab.class%" />
+        <service id="pyrech_cron.formatter.crontab" class="%pyrech_cron.formatter.crontab.class%" />
 
         <service id="pyrech_cron.scheduler" class="%pyrech_cron.scheduler.class%">
-            <argument type="service" id="pyrech_cron.formatter.default" />
+            <argument type="service" id="pyrech_cron.formatter.crontab" />
         </service>
 
     </services>
