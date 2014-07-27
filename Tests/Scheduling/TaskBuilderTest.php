@@ -18,7 +18,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         $this->taskBuilder = new TaskBuilder('\Pyrech\CronBundle\Model\Task');
     }
 
-    public function setTaskClass()
+    public function testSetTaskClass()
     {
         try {
             $this->taskBuilder->setTaskClass('');
