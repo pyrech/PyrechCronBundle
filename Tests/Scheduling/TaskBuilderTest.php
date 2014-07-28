@@ -6,7 +6,7 @@ use Pyrech\CronBundle\Exception\BuilderException;
 use Pyrech\CronBundle\Scheduling\TaskBuilder;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
 use Pyrech\CronBundle\Tests\Fixtures\app\AppKernel;
-use Pyrech\CronBundle\Tests\Fixtures\CommandSchedulable;
+use Pyrech\CronBundle\Tests\Fixtures\Command\CommandSchedulable;
 
 class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 {

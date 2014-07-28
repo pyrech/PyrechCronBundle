@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyrech\CronBundle\Tests\Fixtures;
+namespace Pyrech\CronBundle\Tests\Fixtures\Command;
 
 use Pyrech\CronBundle\Scheduling\SchedulableInterface;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CommandSchedulable extends Command implements SchedulableInterface
+class CommandFoo extends Command implements SchedulableInterface
 {
     /**
      * @inheritdoc
@@ -16,8 +16,8 @@ class CommandSchedulable extends Command implements SchedulableInterface
     protected function configure()
     {
         $this
-            ->setName('test:command')
-            ->setDescription('This command looks minimalist')
+            ->setName('test:foo')
+            ->setDescription('Bar!')
         ;
     }
 
@@ -26,13 +26,17 @@ class CommandSchedulable extends Command implements SchedulableInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('May the force be with you, Luke!');
+        $output->writeln('Baz!');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configTask(TaskBuilderInterface $builder)
     {
         $builder
             ->setCommand($this)
-            ->setHourly(15);
+            ->setDaily(12, 30)
+        ;
     }
 }
