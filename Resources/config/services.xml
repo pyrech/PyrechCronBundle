@@ -11,6 +11,7 @@
         </parameter>
 
         <parameter key="pyrech_cron.task.builder.class">Pyrech\CronBundle\Scheduling\TaskBuilder</parameter>
+        <parameter key="pyrech_cron.finder.command.class">Pyrech\CronBundle\Finder\CommandFinder</parameter>
         <parameter key="pyrech_cron.formatter.crontab.class">Pyrech\CronBundle\Formatter\CrontabFormatter</parameter>
         <parameter key="pyrech_cron.scheduler.class">Pyrech\CronBundle\Scheduling\Scheduler</parameter>
     </parameters>
@@ -20,6 +21,12 @@
         <service id="pyrech_cron.task.builder" class="%pyrech_cron.task.builder.class%">
             <argument>%kernel.root_dir%</argument>
             <argument>%pyrech_cron.console.paths%</argument>
+        </service>
+
+        <service id="pyrech_cron.finder.command" class="%pyrech_cron.finder.command.class%">
+            <argument type="service" id="pyrech_cron.task.builder" />
+            <argument type="service" id="kernel" />
+            <argument type="service" id="validator" on-invalid="null" />
         </service>
 
         <service id="pyrech_cron.formatter.crontab" class="%pyrech_cron.formatter.crontab.class%" />
