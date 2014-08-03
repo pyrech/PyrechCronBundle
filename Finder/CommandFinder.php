@@ -2,7 +2,6 @@
 
 namespace Pyrech\CronBundle\Finder;
 
-use Pyrech\CronBundle\Exception\InvalidTaskException;
 use Pyrech\CronBundle\Model\TaskInterface;
 use Pyrech\CronBundle\Scheduling\SchedulableInterface;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
@@ -11,7 +10,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\ValidatorInterface as LegacyValidatorInterface;
 
-class CommandFinder implements TaskFinderInterface
+class CommandFinder extends AbstractFinder
 {
     /** @var TaskBuilderInterface  */
     private $builder;
@@ -19,24 +18,16 @@ class CommandFinder implements TaskFinderInterface
     /** @var KernelInterface  */
     private $kernel;
 
-    /** @var ValidatorInterface|LegacyValidatorInterface */
-    private $validator;
-
     /**
      * @param TaskBuilderInterface                        $builder
      * @param KernelInterface                             $kernel
      * @param ValidatorInterface|LegacyValidatorInterface $validator
-     *
-     * @throws \InvalidArgumentException
      */
     public function __construct(TaskBuilderInterface $builder, KernelInterface $kernel, $validator)
     {
-        if (! $validator instanceof ValidatorInterface && ! $validator instanceof LegacyValidatorInterface) {
-            throw new \InvalidArgumentException('The validator should implement Symfony\Component\Validator\Validator\ValidatorInterface');
-        }
+        parent::__construct($validator);
         $this->builder = $builder;
         $this->kernel = $kernel;
-        $this->validator = $validator;
     }
 
     /**
@@ -61,8 +52,6 @@ class CommandFinder implements TaskFinderInterface
     /**
      * @param SchedulableInterface $command
      *
-     * @throws InvalidTaskException if the task is not valid
-     *
      * @return TaskInterface
      */
     private function createTask(SchedulableInterface $command)
@@ -72,11 +61,7 @@ class CommandFinder implements TaskFinderInterface
         $command->configTask($this->builder);
         $task = $this->builder->getTask();
 
-        $violations = $this->validator->validate($task);
-
-        if ($violations->count() > 0) {
-            throw new InvalidTaskException($task, $violations);
-        }
+        $this->validateTask($task);
 
         return $task;
     }
