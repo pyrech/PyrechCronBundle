@@ -23,9 +23,11 @@ class PyrechCronExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+        $tasks = array();
         if (isset($config['tasks']) && is_array($config['tasks'])) {
-            $container->setParameter('pyrech_cron.tasks', $config['tasks']);
+            $tasks = $config['tasks'];
         }
+        $container->setParameter('pyrech_cron.tasks', $tasks);
 
     }
 

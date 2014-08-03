@@ -40,7 +40,7 @@ class Configuration implements ConfigurationInterface
                                 return (isset($value['frequency']) && isset($value['when']))
                                     || !(isset($value['frequency']) || isset($value['when']));
                             })
-                            ->thenUnset('Task should have a `frequency` or `when` configuration')
+                            ->thenInvalid('Task should have a `frequency` or `when` configuration')
                         ->end()
                         ->children()
                             ->scalarNode('job')
