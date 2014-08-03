@@ -17,3 +17,9 @@ services:
         class: Pyrech\CronBundle\Tests\Fixtures\Command\CommandFoo
         tags:
             -  { name: console.command }
+
+pyrech_cron:
+    tasks:
+        my_task:
+            job: "echo 1"
+            frequency: "hourly"
