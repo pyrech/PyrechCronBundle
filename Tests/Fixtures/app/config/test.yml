@@ -3,18 +3,8 @@ framework:
     validation: ~
 
 services:
-    test.command.schedulable:
-        class: Pyrech\CronBundle\Tests\Fixtures\Command\CommandSchedulable
-        tags:
-            -  { name: console.command }
-
-    test.command.not_schedulable:
-        class: Pyrech\CronBundle\Tests\Fixtures\Command\CommandNotSchedulable
-        tags:
-            -  { name: console.command }
-
-    test.command.foo:
-        class: Pyrech\CronBundle\Tests\Fixtures\Command\CommandFoo
+    test.outside.schedulable:
+        class: Pyrech\CronBundle\Tests\Fixtures\CommandOutsideBundle\SchedulableCommand
         tags:
             -  { name: console.command }
 

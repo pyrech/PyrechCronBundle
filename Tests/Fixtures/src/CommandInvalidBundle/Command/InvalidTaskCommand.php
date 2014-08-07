@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyrech\CronBundle\Tests\Fixtures\Command;
+namespace Pyrech\CronBundle\Tests\Fixtures\src\CommandInvalidBundle\Command;
 
 use Pyrech\CronBundle\Scheduling\SchedulableInterface;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CommandFoo extends Command implements SchedulableInterface
+class InvalidTaskCommand extends Command implements SchedulableInterface
 {
     /**
      * @inheritdoc
@@ -16,8 +16,8 @@ class CommandFoo extends Command implements SchedulableInterface
     protected function configure()
     {
         $this
-            ->setName('test:foo')
-            ->setDescription('Bar!')
+            ->setName('test:invalid:invalid-task')
+            ->setDescription('This command badly configures a task with a wrong minute')
         ;
     }
 
@@ -26,7 +26,7 @@ class CommandFoo extends Command implements SchedulableInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Baz!');
+        $output->writeln('I’ve got a very bad feeling about this.');
     }
 
     /**
@@ -36,7 +36,8 @@ class CommandFoo extends Command implements SchedulableInterface
     {
         $builder
             ->setCommand($this)
-            ->setDaily(12, 30)
+            ->setHourly(-1)
         ;
     }
 }
+

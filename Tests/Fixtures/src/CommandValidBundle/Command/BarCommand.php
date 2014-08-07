@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyrech\CronBundle\Tests\Fixtures\Command;
+namespace Pyrech\CronBundle\Tests\Fixtures\src\CommandValidBundle\Command;
 
 use Pyrech\CronBundle\Scheduling\SchedulableInterface;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CommandSchedulable extends Command implements SchedulableInterface
+class BarCommand extends Command implements SchedulableInterface
 {
     /**
      * @inheritdoc
@@ -16,8 +16,8 @@ class CommandSchedulable extends Command implements SchedulableInterface
     protected function configure()
     {
         $this
-            ->setName('test:command')
-            ->setDescription('This command looks minimalist')
+            ->setName('test:valid:bar')
+            ->setDescription('foo!')
         ;
     }
 
@@ -26,7 +26,7 @@ class CommandSchedulable extends Command implements SchedulableInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('May the force be with you, Luke!');
+        $output->writeln('I suggest a new strategy, R2. Let the wookiee win.');
     }
 
     /**
@@ -36,7 +36,7 @@ class CommandSchedulable extends Command implements SchedulableInterface
     {
         $builder
             ->setCommand($this)
-            ->setHourly(15)
+            ->setMonthly(15)
         ;
     }
 }

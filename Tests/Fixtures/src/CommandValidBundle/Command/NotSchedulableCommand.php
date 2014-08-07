@@ -1,12 +1,12 @@
 <?php
 
-namespace Pyrech\CronBundle\Tests\Fixtures\Command;
+namespace Pyrech\CronBundle\Tests\Fixtures\src\CommandValidBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CommandNotSchedulable extends Command
+class NotSchedulableCommand extends Command
 {
     /**
      * @inheritdoc
@@ -14,7 +14,7 @@ class CommandNotSchedulable extends Command
     protected function configure()
     {
         $this
-            ->setName('test:command-not-schedulable')
+            ->setName('test:valid:not-schedulable')
             ->setDescription('This command is not schedulable')
         ;
     }
