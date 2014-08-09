@@ -17,9 +17,29 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('pyrech_cron');
 
+        $this->addConsolePathSection($rootNode);
         $this->addTaskSection($rootNode);
 
         return $treeBuilder;
+    }
+
+    private function addConsolePathSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->fixXmlConfig('console_path', 'console_paths')
+            ->children()
+                ->arrayNode('console_paths')
+                    ->info('Console path configuration')
+                    ->canBeUnset()
+                    ->beforeNormalization()
+                        ->ifString()
+                        ->then(function($path) { return array($path); })
+                    ->end()
+                    ->prototype('scalar')
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 
     private function addTaskSection(ArrayNodeDefinition $node)

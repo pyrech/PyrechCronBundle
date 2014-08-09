@@ -18,6 +18,29 @@ class PyrechCronExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertNotHasDefinition('pyrech_cron.tasks');
     }
 
+    public function testConsolePathsLoadWorksWithArray()
+    {
+        $this->createFullConfiguration();
+
+        $expected = array('console', '../bin/console', 'myconsole');
+
+        $this->assertParameter($expected, 'pyrech_cron.console_paths');
+    }
+
+    public function testConsolePathsLoadWorksWithScalar()
+    {
+        $this->configuration = new ContainerBuilder();
+        $config = $this->getFullConfig();
+        $config['console_paths'] = 'mycustomconsole';
+
+        $loader = new PyrechCronExtension();
+        $loader->load(array($config), $this->configuration);
+
+        $expected = array('console', '../bin/console', 'mycustomconsole');
+
+        $this->assertParameter($expected, 'pyrech_cron.console_paths');
+    }
+
     public function testTaskLoadWorksWithValidConfiguration()
     {
         $this->createFullConfiguration();
@@ -185,6 +208,8 @@ EOF;
     protected function getFullConfig()
     {
         $yaml = <<<EOF
+console_paths:
+    - myconsole
 tasks:
     my_first_task:
         job: "echo 1"

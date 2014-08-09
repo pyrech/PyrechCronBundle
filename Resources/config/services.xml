@@ -5,7 +5,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="pyrech_cron.console.paths" type="collection">
+        <parameter key="pyrech_cron.console_paths" type="collection">
             <parameter>console</parameter>
             <parameter>../bin/console</parameter>
         </parameter>
@@ -21,7 +21,7 @@
 
         <service id="pyrech_cron.task.builder" class="%pyrech_cron.task.builder.class%">
             <argument>%kernel.root_dir%</argument>
-            <argument>%pyrech_cron.console.paths%</argument>
+            <argument>%pyrech_cron.console_paths%</argument>
         </service>
 
         <service id="pyrech_cron.finder.command" class="%pyrech_cron.finder.command.class%">
