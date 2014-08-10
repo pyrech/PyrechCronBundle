@@ -47,14 +47,14 @@ class PyrechCronExtensionTest extends \PHPUnit_Framework_TestCase
 
         $expected = array(
             'my_first_task' => array(
-                'job' => 'echo 1',
-                'frequency' => 'hourly'
+                'job' => 'echo \'Im your father!\' | mail -s \'You have to know...\' luke@jedi.org',
+                'frequency' => 'monthly'
             ),
             'my_second_task' => array(
-                'job' => '@phpbin -v',
+                'job' => '@phpbin /path/to/your/script',
                 'when' => array(
                     'minute' => 0,
-                    'hour' => 2,
+                    'hour' => '*/2',
                     'day_of_the_week' => 6
                 )
             )
@@ -212,15 +212,16 @@ console_paths:
     - myconsole
 tasks:
     my_first_task:
-        job: "echo 1"
-        frequency: "hourly"
+        job: "echo 'Im your father!' | mail -s 'You have to know...' luke@jedi.org"
+        frequency: "monthly"
 
     my_second_task:
-        job: "@phpbin -v"
-        when:
+        job: "@phpbin /path/to/your/script"
+        when: # Every two hours on saturday
             minute: 0
-            hour: 2
+            hour: "*/2"
             day_of_the_week: 6
+
 EOF;
         $parser = new Parser();
 
