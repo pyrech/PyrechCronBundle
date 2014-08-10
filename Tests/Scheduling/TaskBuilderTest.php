@@ -6,7 +6,7 @@ use Pyrech\CronBundle\Exception\BuilderException;
 use Pyrech\CronBundle\Scheduling\TaskBuilder;
 use Pyrech\CronBundle\Scheduling\TaskBuilderInterface;
 use Pyrech\CronBundle\Tests\Fixtures\app\AppKernel;
-use Pyrech\CronBundle\Tests\Fixtures\CommandSchedulable;
+use Pyrech\CronBundle\Tests\Fixtures\CommandOutsideBundle\SchedulableCommand;
 
 class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -109,14 +109,14 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             array('console')
         );
 
-        $command = new CommandSchedulable();
+        $command = new SchedulableCommand();
         $command->configTask($taskBuilder);
 
         $task = $taskBuilder->getTask();
 
-        $this->assertRegExp('#.*php.* .*console test:command#', $task->getJob());
-        $this->assertSame(15, $task->getMinute());
-        $this->assertNull($task->getHour());
+        $this->assertRegExp('#.*php.* .*console test:outside:schedulable#', $task->getJob());
+        $this->assertSame(30, $task->getMinute());
+        $this->assertSame(12, $task->getHour());
         $this->assertNull($task->getDay());
         $this->assertNull($task->getMonth());
         $this->assertNull($task->getDayOfTheWeek());
@@ -134,7 +134,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
                 array('console')
             );
 
-            $command = new CommandSchedulable();
+            $command = new SchedulableCommand();
             $command->configTask($taskBuilder);
             $this->fail();
         } catch(BuilderException $e) {
@@ -151,7 +151,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
                 array()
             );
 
-            $command = new CommandSchedulable();
+            $command = new SchedulableCommand();
             $command->configTask($taskBuilder);
             $this->fail();
         } catch(BuilderException $e) {
@@ -172,7 +172,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
                 array('myconsole')
             );
 
-            $command = new CommandSchedulable();
+            $command = new SchedulableCommand();
             $command->configTask($taskBuilder);
             $this->fail();
         } catch(BuilderException $e) {

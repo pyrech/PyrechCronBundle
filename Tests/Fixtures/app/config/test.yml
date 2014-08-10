@@ -1,3 +1,23 @@
 framework:
     secret: azertyuiop
     validation: ~
+
+services:
+    test.outside.schedulable:
+        class: Pyrech\CronBundle\Tests\Fixtures\CommandOutsideBundle\SchedulableCommand
+        tags:
+            -  { name: console.command }
+
+pyrech_cron:
+    tasks:
+        my_first_task:
+            job: "echo 'Im your father!' | mail -s 'You have to know...' luke@jedi.org"
+            frequency: "monthly"
+
+        my_second_task:
+            job: "@phpbin /path/to/your/script"
+            when: # Every two hours on saturday
+                minute: 0
+                hour: "*/2"
+                day_of_the_week: 6
+
