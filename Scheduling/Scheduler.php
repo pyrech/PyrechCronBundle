@@ -54,7 +54,7 @@ class Scheduler implements SchedulerInterface
     {
         $rows = array();
         foreach ($this->getTasks() as $task) {
-            $rows[] = $this->dumper->format($task);
+            $rows[] = $this->formatter->format($task);
         }
 
         return $rows;

@@ -15,7 +15,7 @@ class CronBundleTest extends CronBundleTestCase
     {
         $kernel = self::createKernel();
         $kernel->boot();
-        $this->validator = $validator = $kernel->getContainer()->get('validator');
+        $this->validator = $kernel->getContainer()->get('validator');
     }
 
     public function testKernelBoots()

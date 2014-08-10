@@ -3,7 +3,6 @@
 namespace Pyrech\CronBundle\Tests\Finder;
 
 use Pyrech\CronBundle\Finder\CommandFinder;
-use Pyrech\CronBundle\Finder\TaskFinderInterface;
 use Pyrech\CronBundle\Scheduling\TaskBuilder;
 use Pyrech\CronBundle\Tests\CronBundleTestCase;
 
@@ -23,7 +22,7 @@ class CommandFinderTest extends CronBundleTestCase
 
         $this->assertCount(3, $tasks);
 
-        $jobs = array_map(function($task) { return $task->getJob(); }, $tasks);
+        $jobs = array_map(function ($task) { return $task->getJob(); }, $tasks);
 
         $this->assertCount(1, preg_grep('#.*php.* .*console test:valid:foo#', $jobs));
         $this->assertCount(1, preg_grep('#.*php.* .*console test:valid:bar#', $jobs));

@@ -100,7 +100,7 @@ class ConfigFinder extends AbstractFinder
      */
     private function buildFromFrequency($frequency)
     {
-        switch($frequency) {
+        switch ($frequency) {
             case 'hourly':
                 $this->builder->setHourly();
                 break;

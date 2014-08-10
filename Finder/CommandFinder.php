@@ -72,8 +72,10 @@ class CommandFinder extends AbstractFinder
  *
  * Internal class used to access the protected Application::registerCommands method
  */
-class RegistrableCommandApplication extends Application {
-    public function doRegisterCommands() {
+class RegistrableCommandApplication extends Application
+{
+    public function doRegisterCommands()
+    {
         $this->registerCommands();
     }
 }

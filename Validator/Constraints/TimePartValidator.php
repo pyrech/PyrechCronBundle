@@ -15,7 +15,7 @@ class TimePartValidator extends ConstraintValidator
             return;
         }
 
-        $values = array();
+        $values = array($value);
 
         if (false !== strpos($value, Operator::SEPARATOR)) {
             list($value, $step) = explode(Operator::SEPARATOR, $value, 2);
@@ -41,8 +41,6 @@ class TimePartValidator extends ConstraintValidator
             $values = explode(Operator::DASH, $value, 2);
         } elseif (false !== strpos($value, Operator::COMMA)) {
             $values = explode(Operator::COMMA, $value);
-        } else {
-            $values = array($value);
         }
 
         foreach ($values as $value) {

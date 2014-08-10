@@ -137,7 +137,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             $command = new SchedulableCommand();
             $command->configTask($taskBuilder);
             $this->fail();
-        } catch(BuilderException $e) {
+        } catch (BuilderException $e) {
             $this->assertSame(
                 'The rootDir and possibleConsolePaths should be set to find the console file',
                 $e->getMessage()
@@ -154,7 +154,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             $command = new SchedulableCommand();
             $command->configTask($taskBuilder);
             $this->fail();
-        } catch(BuilderException $e) {
+        } catch (BuilderException $e) {
             $this->assertSame(
                 'The rootDir and possibleConsolePaths should be set to find the console file',
                 $e->getMessage()
@@ -175,7 +175,7 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             $command = new SchedulableCommand();
             $command->configTask($taskBuilder);
             $this->fail();
-        } catch(BuilderException $e) {
+        } catch (BuilderException $e) {
             $this->assertSame(
                 'The console bootstrap was not found in the following path ['.DIRECTORY_SEPARATOR.'myapp'.DIRECTORY_SEPARATOR.'myconsole]',
                 $e->getMessage()

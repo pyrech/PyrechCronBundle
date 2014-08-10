@@ -40,4 +40,3 @@ class InvalidTaskCommand extends Command implements SchedulableInterface
         ;
     }
 }
-

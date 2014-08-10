@@ -238,7 +238,7 @@ EOF;
     }
 
     /**
-     * @param mixed $expected
+     * @param mixed  $expected
      * @param string $key
      */
     private function assertParameter($expected, $key)

@@ -2,7 +2,6 @@
 
 namespace Pyrech\CronBundle\DependencyInjection;
 
-use Pyrech\CronBundle\Util\Operator;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -33,7 +32,7 @@ class Configuration implements ConfigurationInterface
                     ->canBeUnset()
                     ->beforeNormalization()
                         ->ifString()
-                        ->then(function($path) { return array($path); })
+                        ->then(function ($path) { return array($path); })
                     ->end()
                     ->prototype('scalar')
                     ->end()
@@ -56,7 +55,7 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('name')
                     ->prototype('array')
                         ->validate()
-                            ->ifTrue(function($value) {
+                            ->ifTrue(function ($value) {
                                 return (isset($value['frequency']) && isset($value['when']))
                                     || !(isset($value['frequency']) || isset($value['when']));
                             })
@@ -78,7 +77,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                             ->arrayNode('when')
                                 ->validate()
-                                    ->ifTrue(function($value) {
+                                    ->ifTrue(function ($value) {
                                         return empty($value);
                                     })
                                     ->thenInvalid('Invalid when configuration "%s"')
