@@ -3,7 +3,7 @@
 namespace Pyrech\CronBundle\Scheduling;
 
 use Pyrech\CronBundle\Exception\BuilderException;
-use Pyrech\CronBundle\Model\Task;
+use Pyrech\CronBundle\Model\TaskInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Process\PhpExecutableFinder;
 
@@ -83,7 +83,9 @@ class TaskBuilder implements TaskBuilderInterface
      */
     public function getTask()
     {
-        $task = new Task($this->job);
+        $class = $this->taskClass;
+        /** @var TaskInterface $task */
+        $task = new $class($this->job);
         $task->setMinute($this->minute);
         $task->setHour($this->hour);
         $task->setDay($this->day);
