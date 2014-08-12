@@ -35,9 +35,9 @@ class ConfigFinderTest extends CronBundleTestCase
         $this->assertSame('echo 1', $task->getJob());
         $this->assertSame(0, $task->getMinute());
         $this->assertSame(0, $task->getHour());
-        $this->assertNull($task->getDay());
+        $this->assertSame(0, $task->getDayOfWeek());
+        $this->assertNull($task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertSame(0, $task->getDayOfTheWeek());
 
         $configs = array(
             array(
@@ -58,9 +58,9 @@ class ConfigFinderTest extends CronBundleTestCase
         $this->assertRegExp('#.*php.* -v#', $task->getJob());
         $this->assertNull($task->getMinute());
         $this->assertSame(12, $task->getHour());
-        $this->assertNull($task->getDay());
+        $this->assertNull($task->getDayOfWeek());
+        $this->assertNull($task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertNull($task->getDayOfTheWeek());
     }
 
     public function testFailWithInvalidStructure()

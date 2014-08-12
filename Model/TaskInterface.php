@@ -25,14 +25,24 @@ interface TaskInterface
     public function getHour();
 
     /**
-     * @param mixed $day
+     * @param mixed $dayOfTheWeek
      */
-    public function setDay($day=null);
+    public function setDayOfWeek($dayOfTheWeek=null);
 
     /**
      * @return mixed
      */
-    public function getDay();
+    public function getDayOfWeek();
+
+    /**
+     * @param mixed $dayOfMonth
+     */
+    public function setDayOfMonth($dayOfMonth=null);
+
+    /**
+     * @return mixed
+     */
+    public function getDayOfMonth();
 
     /**
      * @param mixed $month
@@ -43,16 +53,6 @@ interface TaskInterface
      * @return mixed
      */
     public function getMonth();
-
-    /**
-     * @param mixed $dayOfTheWeek
-     */
-    public function setDayOfTheWeek($dayOfTheWeek=null);
-
-    /**
-     * @return mixed
-     */
-    public function getDayOfTheWeek();
 
     /**
      * @param string $job

@@ -36,7 +36,7 @@ class InvalidTaskCommand extends Command implements SchedulableInterface
     {
         $builder
             ->setCommand($this)
-            ->setHourly(-1)
+            ->setMinute(-1)
         ;
     }
 }

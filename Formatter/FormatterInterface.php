@@ -37,13 +37,22 @@ interface FormatterInterface
     public function formatHour(TaskInterface $task);
 
     /**
-     * Format the day part of the task
+     * Format the day of the week part of the task
      *
      * @param TaskInterface $task
      *
      * @return string
      */
-    public function formatDay(TaskInterface $task);
+    public function formatDayOfWeek(TaskInterface $task);
+
+    /**
+     * Format the day of the month part of the task
+     *
+     * @param TaskInterface $task
+     *
+     * @return string
+     */
+    public function formatDayOfMonth(TaskInterface $task);
 
     /**
      * Format the month part of the task
@@ -53,13 +62,4 @@ interface FormatterInterface
      * @return string
      */
     public function formatMonth(TaskInterface $task);
-
-    /**
-     * Format the day of the week part of the task
-     *
-     * @param TaskInterface $task
-     *
-     * @return string
-     */
-    public function formatDayOfTheWeek(TaskInterface $task);
 }

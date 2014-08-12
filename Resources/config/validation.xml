@@ -17,7 +17,13 @@
                 <option name="maximum">23</option>
             </constraint>
         </property>
-        <property name="day">
+        <property name="dayOfWeek">
+            <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
+                <option name="minimum">0</option>
+                <option name="maximum">6</option>
+            </constraint>
+        </property>
+        <property name="dayOfMonth">
             <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
                 <option name="minimum">1</option>
                 <option name="maximum">31</option>
@@ -27,12 +33,6 @@
             <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
                 <option name="minimum">1</option>
                 <option name="maximum">12</option>
-            </constraint>
-        </property>
-        <property name="dayOfTheWeek">
-            <constraint name="Pyrech\CronBundle\Validator\Constraints\TimePart">
-                <option name="minimum">0</option>
-                <option name="maximum">6</option>
             </constraint>
         </property>
         <property name="job">

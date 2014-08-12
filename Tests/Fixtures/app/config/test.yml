@@ -19,4 +19,4 @@ pyrech_cron:
             when: # Every two hours on saturday
                 minute: 0
                 hour: "*/2"
-                day_of_the_week: 6
+                day_of_week: 6

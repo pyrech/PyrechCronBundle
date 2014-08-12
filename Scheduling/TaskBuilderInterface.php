@@ -45,11 +45,18 @@ interface TaskBuilderInterface
     public function setHour($hour=null);
 
     /**
-     * @param mixed $day
+     * @param mixed $dayOfWeek
      *
      * @return TaskBuilderInterface
      */
-    public function setDay($day=null);
+    public function setDayOfWeek($dayOfWeek=null);
+
+    /**
+     * @param mixed $dayOfMonth
+     *
+     * @return TaskBuilderInterface
+     */
+    public function setDayOfMonth($dayOfMonth=null);
 
     /**
      * @param mixed $month
@@ -57,13 +64,6 @@ interface TaskBuilderInterface
      * @return TaskBuilderInterface
      */
     public function setMonth($month=null);
-
-    /**
-     * @param mixed $dayOfTheWeek
-     *
-     * @return TaskBuilderInterface
-     */
-    public function setDayOfTheWeek($dayOfTheWeek=null);
 
     /**
      * @param string $job

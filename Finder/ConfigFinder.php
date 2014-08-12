@@ -136,16 +136,16 @@ class ConfigFinder extends AbstractFinder
             $this->builder->setHour($when['hour']);
         }
 
-        if (isset($when['day'])) {
-            $this->builder->setDay($when['day']);
+        if (isset($when['day_of_week'])) {
+            $this->builder->setDayOfWeek($when['day_of_week']);
+        }
+
+        if (isset($when['day_of_month'])) {
+            $this->builder->setDayOfMonth($when['day_of_month']);
         }
 
         if (isset($when['month'])) {
             $this->builder->setMonth($when['month']);
-        }
-
-        if (isset($when['dayOfTheWeek'])) {
-            $this->builder->setDayOfTheWeek($when['dayOfTheWeek']);
         }
     }
 }

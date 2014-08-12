@@ -25,13 +25,13 @@ class TaskBuilder implements TaskBuilderInterface
     private $hour;
 
     /** @var mixed */
-    private $day;
+    private $dayOfWeek;
+
+    /** @var mixed */
+    private $dayOfMonth;
 
     /** @var mixed */
     private $month;
-
-    /** @var mixed */
-    private $dayOfTheWeek;
 
     /** @var string */
     private $job;
@@ -88,9 +88,9 @@ class TaskBuilder implements TaskBuilderInterface
         $task = new $class($this->job);
         $task->setMinute($this->minute);
         $task->setHour($this->hour);
-        $task->setDay($this->day);
+        $task->setDayOfWeek($this->dayOfWeek);
+        $task->setDayOfMonth($this->dayOfMonth);
         $task->setMonth($this->month);
-        $task->setDayOfTheWeek($this->dayOfTheWeek);
         $task->setOutputDiscarded($this->outputDiscarded);
 
         return $task;
@@ -103,9 +103,9 @@ class TaskBuilder implements TaskBuilderInterface
     {
         $this->minute = null;
         $this->hour = null;
-        $this->day = null;
+        $this->dayOfWeek = null;
+        $this->dayOfMonth = null;
         $this->month = null;
-        $this->dayOfTheWeek = null;
         $this->job = '';
         $this->outputDiscarded = true;
 
@@ -135,9 +135,19 @@ class TaskBuilder implements TaskBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setDay($day = null)
+    public function setDayOfWeek($dayOfWeek = null)
     {
-        $this->day = $day;
+        $this->dayOfWeek = $dayOfWeek;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDayOfMonth($dayOfMonth = null)
+    {
+        $this->dayOfMonth = $dayOfMonth;
 
         return $this;
     }
@@ -148,16 +158,6 @@ class TaskBuilder implements TaskBuilderInterface
     public function setMonth($month = null)
     {
         $this->month = $month;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDayOfTheWeek($dayOfTheWeek = null)
-    {
-        $this->dayOfTheWeek = $dayOfTheWeek;
 
         return $this;
     }
@@ -252,9 +252,9 @@ class TaskBuilder implements TaskBuilderInterface
     {
         $this->minute = $minute;
         $this->hour = null;
-        $this->day = null;
+        $this->dayOfWeek = null;
+        $this->dayOfMonth = null;
         $this->month = null;
-        $this->dayOfTheWeek = null;
 
         return $this;
     }
@@ -266,9 +266,9 @@ class TaskBuilder implements TaskBuilderInterface
     {
         $this->minute = $minute;
         $this->hour = $hour;
-        $this->day = null;
+        $this->dayOfWeek = null;
+        $this->dayOfMonth = null;
         $this->month = null;
-        $this->dayOfTheWeek = null;
 
         return $this;
     }
@@ -276,13 +276,13 @@ class TaskBuilder implements TaskBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setWeekly($dayOfTheWeek = 0, $hour = 0, $minute = 0)
+    public function setWeekly($dayOfWeek = 0, $hour = 0, $minute = 0)
     {
         $this->minute = $minute;
         $this->hour = $hour;
-        $this->day = null;
+        $this->dayOfWeek = $dayOfWeek;
+        $this->dayOfMonth = null;
         $this->month = null;
-        $this->dayOfTheWeek = $dayOfTheWeek;
 
         return $this;
     }
@@ -290,13 +290,13 @@ class TaskBuilder implements TaskBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setMonthly($day = 1, $hour = 0, $minute = 0)
+    public function setMonthly($dayOfMonth = 1, $hour = 0, $minute = 0)
     {
         $this->minute = $minute;
         $this->hour = $hour;
-        $this->day = $day;
+        $this->dayOfWeek = null;
+        $this->dayOfMonth = $dayOfMonth;
         $this->month = null;
-        $this->dayOfTheWeek = null;
 
         return $this;
     }
@@ -304,13 +304,13 @@ class TaskBuilder implements TaskBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setYearly($month = 1, $day = 1, $hour = 0, $minute = 0)
+    public function setYearly($month = 1, $dayOfMonth = 1, $hour = 0, $minute = 0)
     {
         $this->minute = $minute;
         $this->hour = $hour;
-        $this->day = $day;
+        $this->dayOfWeek = null;
+        $this->dayOfMonth = $dayOfMonth;
         $this->month = $month;
-        $this->dayOfTheWeek = null;
 
         return $this;
     }

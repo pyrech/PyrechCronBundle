@@ -11,13 +11,13 @@ class Task implements TaskInterface
     private $hour = null;
 
     /** @var mixed */
-    private $day = null;
+    private $dayOfWeek = null;
+
+    /** @var mixed */
+    private $dayOfMonth = null;
 
     /** @var mixed */
     private $month = null;
-
-    /** @var mixed */
-    private $dayOfTheWeek = null;
 
     /** @var string */
     private $job = '';
@@ -68,17 +68,33 @@ class Task implements TaskInterface
     /**
      * {@inheritdoc}
      */
-    public function setDay($day=null)
+    public function setDayOfWeek($dayOfWeek=null)
     {
-        $this->day = $day;
+        $this->dayOfWeek = $dayOfWeek;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDay()
+    public function getDayOfWeek()
     {
-        return $this->day;
+        return $this->dayOfWeek;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDayOfMonth($dayOfMonth=null)
+    {
+        $this->dayOfMonth = $dayOfMonth;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDayOfMonth()
+    {
+        return $this->dayOfMonth;
     }
 
     /**
@@ -95,22 +111,6 @@ class Task implements TaskInterface
     public function getMonth()
     {
         return $this->month;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDayOfTheWeek($dayOfTheWeek=null)
-    {
-        $this->dayOfTheWeek = $dayOfTheWeek;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getDayOfTheWeek()
-    {
-        return $this->dayOfTheWeek;
     }
 
     /**

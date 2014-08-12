@@ -57,9 +57,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             ->setJob('/usr/bin/php -v')
             ->setMinute(1)
             ->setHour(2)
-            ->setDay(3)
-            ->setMonth(4)
-            ->setDayOfTheWeek(5)
+            ->setDayOfWeek(3)
+            ->setDayOfMonth(4)
+            ->setMonth(5)
             ->setOutputDiscarded(false);
 
         $task = $this->taskBuilder->getTask();
@@ -69,9 +69,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('/usr/bin/php -v', $task->getJob());
         $this->assertSame(1, $task->getMinute());
         $this->assertSame(2, $task->getHour());
-        $this->assertSame(3, $task->getDay());
-        $this->assertSame(4, $task->getMonth());
-        $this->assertSame(5, $task->getDayOfTheWeek());
+        $this->assertSame(3, $task->getDayOfWeek());
+        $this->assertSame(4, $task->getDayOfMonth());
+        $this->assertSame(5, $task->getMonth());
         $this->assertSame(false, $task->hasOutputDiscarded());
     }
 
@@ -81,9 +81,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
             ->setJob('/usr/bin/php -v')
             ->setMinute(1)
             ->setHour(2)
-            ->setDay(3)
+            ->setDayOfWeek(5)
+            ->setDayOfMonth(3)
             ->setMonth(4)
-            ->setDayOfTheWeek(5)
             ->setOutputDiscarded(false);
 
         $this->taskBuilder->reset();
@@ -93,9 +93,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($task->getJob());
         $this->assertNull($task->getMinute());
         $this->assertNull($task->getHour());
-        $this->assertNull($task->getDay());
+        $this->assertNull($task->getDayOfWeek());
+        $this->assertNull($task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertNull($task->getDayOfTheWeek());
         $this->assertTrue($task->hasOutputDiscarded());
     }
 
@@ -117,9 +117,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp('#.*php.* .*console test:outside:schedulable#', $task->getJob());
         $this->assertSame(30, $task->getMinute());
         $this->assertSame(12, $task->getHour());
-        $this->assertNull($task->getDay());
+        $this->assertNull($task->getDayOfWeek());
+        $this->assertNull($task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertNull($task->getDayOfTheWeek());
         $this->assertSame(true, $task->hasOutputDiscarded());
     }
 
@@ -192,9 +192,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(30, $task->getMinute());
         $this->assertNull($task->getHour());
-        $this->assertNull($task->getDay());
+        $this->assertNull($task->getDayOfWeek());
+        $this->assertNull($task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertNull($task->getDayOfTheWeek());
     }
 
     public function testSetDaily()
@@ -205,9 +205,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(30, $task->getMinute());
         $this->assertSame(12, $task->getHour());
-        $this->assertNull($task->getDay());
+        $this->assertNull($task->getDayOfWeek());
+        $this->assertNull($task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertNull($task->getDayOfTheWeek());
     }
 
     public function testSetWeekly()
@@ -218,9 +218,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(15, $task->getMinute());
         $this->assertSame(3, $task->getHour());
-        $this->assertNull($task->getDay());
+        $this->assertSame(0, $task->getDayOfWeek());
+        $this->assertNull($task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertSame(0, $task->getDayOfTheWeek());
     }
 
     public function testSetMonthly()
@@ -231,9 +231,9 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(55, $task->getMinute());
         $this->assertSame(2, $task->getHour());
-        $this->assertSame(15, $task->getDay());
+        $this->assertNull($task->getDayOfWeek());
+        $this->assertSame(15, $task->getDayOfMonth());
         $this->assertNull($task->getMonth());
-        $this->assertNull($task->getDayOfTheWeek());
     }
 
     public function testSetYearly()
@@ -244,8 +244,8 @@ class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(30, $task->getMinute());
         $this->assertSame(4, $task->getHour());
-        $this->assertSame(15, $task->getDay());
+        $this->assertNull($task->getDayOfWeek());
+        $this->assertSame(15, $task->getDayOfMonth());
         $this->assertSame(12, $task->getMonth());
-        $this->assertNull($task->getDayOfTheWeek());
     }
 }

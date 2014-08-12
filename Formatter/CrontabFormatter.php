@@ -21,9 +21,9 @@ class CrontabFormatter implements FormatterInterface
         $result = sprintf('%s %s %s %s %s %s',
             $this->formatMinute($task),
             $this->formatHour($task),
-            $this->formatDay($task),
+            $this->formatDayOfMonth($task),
             $this->formatMonth($task),
-            $this->formatDayOfTheWeek($task),
+            $this->formatDayOfWeek($task),
             $task->getJob()
         );
 
@@ -49,9 +49,17 @@ class CrontabFormatter implements FormatterInterface
     /**
      * {@inheritdoc}
      */
-    public function formatDay(TaskInterface $task)
+    public function formatDayOfWeek(TaskInterface $task)
     {
-        return $this->formatTimePart($task->getDay());
+        return $this->formatTimePart($task->getDayOfWeek());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function formatDayOfMonth(TaskInterface $task)
+    {
+        return $this->formatTimePart($task->getDayOfMonth());
     }
 
     /**
@@ -60,14 +68,6 @@ class CrontabFormatter implements FormatterInterface
     public function formatMonth(TaskInterface $task)
     {
         return $this->formatTimePart($task->getMonth());
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function formatDayOfTheWeek(TaskInterface $task)
-    {
-        return $this->formatTimePart($task->getDayOfTheWeek());
     }
 
     /**

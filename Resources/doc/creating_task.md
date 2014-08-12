@@ -90,7 +90,7 @@ not yet used inside the bundle):
                 when: # Every two hours on saturday
                     minute: 0
                     hour: "*/2"
-                    day_of_the_week: 6
+                    day_of_week: 6
 
 You can specify any job that is runnable in your shell. You can use the special
 syntax `@phpbin` that will be replaced by the php bin path (f.e `/usr/bin/php`
@@ -98,4 +98,4 @@ on Ubuntu).
 
 You have the choice to configure either frequency (i.e `hourly`, `daily`,
 `weekly`, `monthly`, `yearly`) or a completely custom setup by setting
-`minute`, `hour`, `day`, `month`, `day_of_the_week` in the `when` section
+`minute`, `hour`, `day_of_week`, `day_of_month`, `month` in the `when` section

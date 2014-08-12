@@ -55,7 +55,7 @@ class PyrechCronExtensionTest extends \PHPUnit_Framework_TestCase
                 'when' => array(
                     'minute' => 0,
                     'hour' => '*/2',
-                    'day_of_the_week' => 6
+                    'day_of_week' => 6
                 )
             )
         );
@@ -162,7 +162,7 @@ class PyrechCronExtensionTest extends \PHPUnit_Framework_TestCase
                 'job' => 'echo 1',
                 'frequency' => 'weekly',
                 'when' => array(
-                    'day_of_the_week' => 1
+                    'day_of_week' => 1
                 )
             )
         );
@@ -220,7 +220,7 @@ tasks:
         when: # Every two hours on saturday
             minute: 0
             hour: "*/2"
-            day_of_the_week: 6
+            day_of_week: 6
 
 EOF;
         $parser = new Parser();
